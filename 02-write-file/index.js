@@ -7,7 +7,7 @@ const writeStream = fs.createWriteStream(path.join(__dirname, 'text.txt'));
 stdout.write('Hi, write your text...\n');
 stdin.on('data', (data) => {
   const text = data.toString();
-  if (text.includes('exit')) {
+  if (text.trim() === 'exit') {
     console.log('Thx, Have a good day!');
     process.exit();
   }
@@ -15,6 +15,6 @@ stdin.on('data', (data) => {
 });
 
 process.on('SIGINT', () => {
-  stdout.write('Have a good day!\n');
+  stdout.write('Thx, Have a good day!\n');
   process.exit();
 });
